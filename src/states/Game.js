@@ -49,11 +49,21 @@ export default class extends Phaser.State {
         this.game.physics.arcade.collide(this.player, this.wall1)
         this.game.physics.arcade.collide(this.player, this.wall2)
 
-        this.inputs
+        this.inputs()
 
         if (this.player.body.touching.down) {
             this.hasJumped = false
         }
+    }
+
+    loadLevel() {
+        this.level = this.game.add.group()
+        this.level.enableBody = true
+
+        this.ground = this.game.add.sprite(760/2-160, 400/2-80, 'wall', this.level)
+        this.ground = this.game.add.sprite(760/2+140, 400/2-80, 'wall', this.level)
+        this.ground = this.game.add.sprite(760 / 2 - 160, 400 / 2, 'ground', this.level)
+
     }
 
     inputs() {

@@ -9,6 +9,9 @@ export default class extends Phaser.State {
     preload() {
         this.game.load.spritesheet('player', './assets/player.png', 28, 22)
         this.game.load.image('ground', './assets/ground.png')
+        this.game.load.image('wall', 'assets/wall.png');
+
+        this.game.load.audio('jump', ['./assets/jump.mp3', './assets/jump.wav'])
     }
 
     create() {
@@ -24,10 +27,29 @@ export default class extends Phaser.State {
 
         this.player.animations.add('idle', [3, 4, 5, 4], 5, true)
         this.player.animations.play('idle')
+
+        this.cursor = game.input.keyboard.createCursorKeys()
     }
 
     update() {
         this.game.physics.arcade.collide(this.player, this.ground)
+
+        this.inputs
+    }
+
+    inputs() {
+        if(this.cursor.left.isLeft){
+            this.player.velocity.x = -100
+        }
+
+        if(this.cursor.right.isRight){
+            this.player.velocity.x = 100
+        }
+    }
+
+    jumpPlayer() {
+        this.player.body.velocity.y = - 200
+        this.jump
     }
 
     render() {

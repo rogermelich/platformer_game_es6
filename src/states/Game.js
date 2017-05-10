@@ -9,7 +9,8 @@ export default class extends Phaser.State {
     preload() {
         this.game.load.spritesheet('player', './assets/player.png', 28, 22)
         this.game.load.image('ground', './assets/ground.png')
-        this.game.load.image('wall', 'assets/wall.png');
+        this.game.load.image('wall', './assets/wall.png')
+        this.game.load.image('coin', './assets/coin.png')
 
         this.game.load.audio('jump', ['./assets/jump.mp3', './assets/jump.wav'])
     }
@@ -18,9 +19,7 @@ export default class extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
 
         this.player = this.game.add.sprite(360, 100, 'player')
-        this.ground = this.game.add.sprite(760 / 2 - 160, 400 / 2, 'ground')
-        this.wall1 = this.game.add.sprite(760/2-160, 400/2-80, 'wall')
-        this.wall2 = this.game.add.sprite(760/2+140, 400/2-80, 'wall')
+        this.loadLevel()
 
         this.jumpSound = this.game.add.audio('jump', 0.1)
 
@@ -60,10 +59,18 @@ export default class extends Phaser.State {
         this.level = this.game.add.group()
         this.level.enableBody = true
 
-        this.ground = this.game.add.sprite(760/2-160, 400/2-80, 'wall', this.level)
-        this.ground = this.game.add.sprite(760/2+140, 400/2-80, 'wall', this.level)
-        this.ground = this.game.add.sprite(760 / 2 - 160, 400 / 2, 'ground', this.level)
+        this.ground = this.game.add.sprite(760/2-160, 400/2-80, 0, 'wall', this.level)
+        this.ground = this.game.add.sprite(760/2+140, 400/2-80, 0, 'wall', this.level)
+        this.ground = this.game.add.sprite(760 / 2 - 160, 400 / 2, 0, 'ground', this.level)
 
+    }
+    
+    putCoinsOnLevel() {
+        this.coins = this.game.add.group()
+
+        this.game.add.sprite(240, 400/2-20, 0, 'coin', this.level)
+        this.game.add.sprite(280, 400/2-20, 0, 'coin', this.level)
+        this.game.add.sprite(320, 400/2-20, 0, 'coin', this.level)
     }
 
     inputs() {

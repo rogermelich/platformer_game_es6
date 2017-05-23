@@ -60,6 +60,9 @@ export default class extends Phaser.State {
         //Load Level
         this.loadLevel()
 
+        //Collectibles
+        this.putCoinsOnLevel()
+
         this.jumpSound = this.game.add.audio('jump', 0.1)
 
         game.physics.arcade.enable(this.player)

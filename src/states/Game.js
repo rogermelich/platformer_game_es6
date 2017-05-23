@@ -73,11 +73,14 @@ export default class extends Phaser.State {
     }
 
     putCoinsOnLevel() {
-        this.coins = this.game.add.group()
+        this.coins = this.game.add.group();
+        this.level.enableBody = true;
 
-        this.game.add.sprite(240, 400/2-20, 0, 'coin', this.level)
-        this.game.add.sprite(280, 400/2-20, 0, 'coin', this.level)
-        this.game.add.sprite(320, 400/2-20, 0, 'coin', this.level)
+        this.ground = game.add.sprite(760/2-160,400/2,'ground',0, this.level);
+        this.wall1 = game.add.sprite(760/2-160,500/2-80,'wall',0, this.level);
+        this.wall2 = game.add.sprite(760/2+140,400/2-80,'wall',0, this.level);
+
+        this.level.setAll('body.immovable', true);
     }
 
     inputs() {

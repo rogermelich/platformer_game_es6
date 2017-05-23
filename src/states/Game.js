@@ -67,26 +67,11 @@ export default class extends Phaser.State {
         this.enemy = this.game.add.sprite(500, 400/2-20, 'enemy')
         game.physics.arcade.enable(this.enemy)
 
-        this.jumpSound = this.game.add.audio('jump', 0.1)
-
-        game.physics.arcade.enable(this.player)
-        game.physics.arcade.enable(this.ground)
-        game.physics.arcade.enable(this.wall1)
-        game.physics.arcade.enable(this.wall2)
-        this.player.body.gravity.y = 600
-
-        this.player.body.setSize(20, 20, 0, 0);
-
-        this.ground.body.immovable = true
-        this.wall1.body.immovable = true
-        this.wall2.body.immovable = true
-
-        this.player.animations.add('idle', [3, 4, 5, 4], 5, true)
-        this.player.animations.play('idle')
-
+        //Config Inputs
         this.cursor = game.input.keyboard.createCursorKeys()
+        game.input.keyboard.addKeyCapture([Phaser.Keyboard.UP, Phaser.Keyboard.DOWN, Phaser.Keyboard.RIGHT, Phaser.Keyboard.LEFT]);
 
-        this.hasJumped = false
+        this.setParticles()
     }
 
     addSounds() {

@@ -68,7 +68,7 @@ export default class extends Phaser.State {
 
         this.ground = this.game.add.sprite(760/2-160, 400/2-80, 0, 'wall', this.level)
         this.ground = this.game.add.sprite(760/2+140, 400/2-80, 0, 'wall', this.level)
-        this.ground = this.game.add.sprite(760 / 2 - 160, 400 / 2, 0, 'ground', this.level)
+        this.ground = this.game.add.sprite(760/2-160, 400/2, 0, 'ground', this.level)
 
     }
 

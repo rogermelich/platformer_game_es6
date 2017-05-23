@@ -7,12 +7,19 @@ export default class extends Phaser.State {
     }
 
     preload() {
-        this.game.load.spritesheet('player', './assets/player.png', 28, 22)
-        this.game.load.image('ground', './assets/ground.png')
-        this.game.load.image('wall', './assets/wall.png')
-        this.game.load.image('coin', './assets/coin.png')
+        this.game.load.spritesheet('player', './assets/player.png', 28, 22);
+        this.game.load.image('ground', './assets/ground.png');
+        this.game.load.image('wall', './assets/wall.png');
+        this.game.load.image('coin', './assets/coin.png');
+        this.game.load.image('enemy','./assets/enemy.png');
+        this.game.load.image('coin', 'assets/coin.png');
+        this.game.load.image('dust', 'assets/dust.png');
+        this.game.load.image('exp', 'assets/exp.png');
 
-        this.game.load.audio('jump', ['./assets/jump.mp3', './assets/jump.wav'])
+        this.game.load.audio('jump', ['./assets/jump.mp3', './assets/jump.wav']);
+        this.game.load.audio('dust', ['assets/dust.wav', 'assets/dust.mp3']);
+        this.game.load.audio('dead', ['assets/dead.wav', 'assets/dead.mp3']);
+        this.game.load.audio('coin', ['assets/coin.wav', 'assets/coin.mp3']);
     }
 
     create() {

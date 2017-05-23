@@ -24,6 +24,8 @@ export default class extends Phaser.State {
 
     create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
+        this.game.physics.setBoundsToWorld()
+        this.addSounds()
 
         this.player = this.game.add.sprite(360, 100, 'player')
         this.loadLevel()
@@ -48,6 +50,13 @@ export default class extends Phaser.State {
         this.cursor = game.input.keyboard.createCursorKeys()
 
         this.hasJumped = false
+    }
+
+    addSounds() {
+        this.jumpSound = this.game.add.audio('jump')
+        this.dustSound = game.add.audio('dust')
+        this.coinSound = game.add.audio('coin')
+        this.deadSound = game.add.audio('dead')
     }
 
     update() {

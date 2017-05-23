@@ -22,6 +22,25 @@ export default class extends Phaser.State {
         this.game.load.audio('coin', ['assets/coin.wav', 'assets/coin.mp3']);
     }
 
+    spawnPlayer() {
+      if(this.playerIsDead) {
+        //this.player.x= 380
+        //this.player.y= 101
+        this.player.reset(380, 101);
+        this.playerIsDead=false;
+      } else {
+        this.player = this.game.add.sprite(380,101,'player')
+      }
+    }
+
+    configurePlayer() {
+      this.player.body.gravity.y= 600
+      this.player.body.setSize(20,20,0,0);
+      this.player.animations.add('idle',[3,4,5,4],5,true)
+      this.player.animations.play('idle')
+    }
+
+
     create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         this.game.physics.setBoundsToWorld()
@@ -31,7 +50,14 @@ export default class extends Phaser.State {
         this.playerIsDead = false;
         this.hasJumped = false;
 
-        this.player = this.game.add.sprite(360, 100, 'player')
+        //Player init
+        this.spawnPlayer()
+        game.physics.arcade.enable(this.player)
+        this.configurePlayer()
+        this.player.checkWorldBounds = true;
+        this.player.events.onOutOfBounds.add(this.dead,this)
+
+        //Load Level
         this.loadLevel()
 
         this.jumpSound = this.game.add.audio('jump', 0.1)

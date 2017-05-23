@@ -22,6 +22,20 @@ export default class extends Phaser.State {
         this.game.load.audio('coin', ['assets/coin.wav', 'assets/coin.mp3']);
     }
 
+    setParticles() {
+      this.dust = game.add.emitter(0, 0, 20);
+      this.dust.makeParticles('dust');
+      this.dust.setYSpeed(-100, 100);
+      this.dust.setXSpeed(-100, 100);
+      // this.dust.gravity = 0;
+
+      this.explosion = game.add.emitter(0, 0, 20);
+      this.explosion.makeParticles('exp');
+      this.explosion.setYSpeed(-150, 150);
+      this.explosion.setXSpeed(-150, 150);
+      // this.explosion.gravity = 0;
+    }
+
     spawnPlayer() {
       if(this.playerIsDead) {
         //this.player.x= 380

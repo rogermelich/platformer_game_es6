@@ -146,6 +146,20 @@ export default class extends Phaser.State {
   }
     }
 
+    dead() {
+      this.playerIsDead = true
+      this.deadSound.play()
+      game.camera.shake(0.05, 200)
+
+      if (this.playerIsDead) {
+        this.explosion.x = this.player.x
+        this.explosion.y = this.player.y+10
+        this.explosion.start(true,300,null,20)
+      }
+      //tornar a colocar usuari en posició inicial
+      this.spawnPlayer()
+    }
+
     jumpPlayer() {
         this.player.body.velocity.y = -220
 

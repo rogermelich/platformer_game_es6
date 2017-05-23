@@ -1,6 +1,5 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
 
 export default class extends Phaser.State {
     init() {
@@ -96,15 +95,35 @@ export default class extends Phaser.State {
     }
 
     update() {
-        this.game.physics.arcade.collide(this.player, this.ground)
-        this.game.physics.arcade.collide(this.player, this.wall1)
-        this.game.physics.arcade.collide(this.player, this.wall2)
+        this.game.physics.arcade.collide(this.player, this.level)
+
+        this.game.physics.arcade.overlap(this.player, this.enemy, this.dead, null, this)
+        this.game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this)
 
         this.inputs()
+        if (this.player.body) {
+          if (this.player.body.touching.down) {
+            if (this.hasJumped) {
+            this.dustSound.play();
+            this.dust.x = this.player.x;
+            this.dust.y = this.player.y+10;
+            this.dust.start(true, 300, null, 8);
+            }
+          this.hasJumped = false
+          }
+
+          if (this.player.y < 100 ) {
+            this.player.body.velocity.y = 0
+          }
+        }
 
         if (this.player.body.touching.down) {
             this.hasJumped = false
         }
+
+        this.explosion.forEachAlive(function(p){
+          p.alpha = game.math.clamp(p.lifespan / 100, 0, 1);
+        }, this);
     }
 
     loadLevel() {

@@ -63,6 +63,10 @@ export default class extends Phaser.State {
         //Collectibles
         this.putCoinsOnLevel()
 
+        //Enemie
+        this.enemy = this.game.add.sprite(500, 400/2-20, 'enemy')
+        game.physics.arcade.enable(this.enemy)
+
         this.jumpSound = this.game.add.audio('jump', 0.1)
 
         game.physics.arcade.enable(this.player)

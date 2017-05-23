@@ -64,7 +64,7 @@ export default class extends Phaser.State {
         this.ground = this.game.add.sprite(760 / 2 - 160, 400 / 2, 0, 'ground', this.level)
 
     }
-    
+
     putCoinsOnLevel() {
         this.coins = this.game.add.group()
 
@@ -74,21 +74,21 @@ export default class extends Phaser.State {
     }
 
     inputs() {
-        if (this.cursor.left.isDown || this.moveLeft) {
-            this.player.body.velocity.x = -200
-            this.player.frame = 2
-        }
-        else if (this.cursor.right.isDown || this.moveRight) {
-            this.player.body.velocity.x = 200
-            this.player.frame = 1
-        }
-        else {
-            this.player.body.velocity.x = 0
-        }
+      if (this.player.body) {
+        if (this.cursor.left.isDown) {
+          this.player.body.velocity.x = -200
+          this.player.frame = 2
+        } else if (this.cursor.right.isDown) {
+          this.player.body.velocity.x = +200
+          this.player.frame = 1
+        } else {
+          this.player.body.velocity.x = 0
+      }
+  }
 
-        if (this.cursor.up.isDown) {
-            this.jumpPlayer()
-        }
+  if (this.cursor.up.isDown) {
+    this.jumpPlayer();
+  }
     }
 
     jumpPlayer() {

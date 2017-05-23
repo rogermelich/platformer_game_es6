@@ -27,6 +27,10 @@ export default class extends Phaser.State {
         this.game.physics.setBoundsToWorld()
         this.addSounds()
 
+        //Initial states
+        this.playerIsDead = false;
+        this.hasJumped = false;
+
         this.player = this.game.add.sprite(360, 100, 'player')
         this.loadLevel()
 

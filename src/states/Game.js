@@ -128,6 +128,12 @@ export default class extends Phaser.State {
         this.level.setAll('body.immovable', true);
     }
 
+    takeCoin(player,coin) {
+      coin.body.enable = false
+      game.add.tween(coin).to({width:0},100).start()
+      this.coinSound.play()
+    }
+
     inputs() {
       if (this.player.body) {
         if (this.cursor.left.isDown) {

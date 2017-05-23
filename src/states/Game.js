@@ -144,12 +144,12 @@ export default class extends Phaser.State {
           this.player.frame = 1
         } else {
           this.player.body.velocity.x = 0
+        }
       }
-  }
 
-  if (this.cursor.up.isDown) {
-    this.jumpPlayer();
-  }
+      if (this.cursor.up.isDown) {
+        this.jumpPlayer();
+      }
     }
 
     dead() {
